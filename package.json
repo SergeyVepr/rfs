@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://SergeyVepr.github.io/rfs",
+  "homepage": "https://sergeyvepr.github.io/rfs",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
