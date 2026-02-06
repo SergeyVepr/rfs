@@ -1,7 +1,9 @@
 import {useEffect, useState} from "react";
-
+import { useI18n } from "../contexts/I18nContext.jsx";
 
 const Container = () => {
+    const { t } = useI18n();
+
     const [value, setValue] = useState("");
     const [result, setResult] = useState(null);
     const [error, setError] = useState("");
@@ -14,9 +16,9 @@ const Container = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setError("");
-        
+
         if (!value.trim()) {
-            setError("Пожалуйста, введите числа");
+            setError(t("container.errorEnterNumbers"));
             setResult(null);
             return;
         }
@@ -27,7 +29,7 @@ const Container = () => {
             .filter(v => v !== "");
 
         if (arr.length === 0) {
-            setError("Не найдено чисел для вычисления");
+            setError(t("container.errorNoNumbers"));
             setResult(null);
             return;
         }
@@ -35,7 +37,7 @@ const Container = () => {
         // Check if all values are valid numbers
         const invalidNumbers = arr.filter(v => isNaN(v) || v === "");
         if (invalidNumbers.length > 0) {
-            setError("Обнаружены недопустимые значения");
+            setError(t("container.errorInvalidValues"));
             setResult(null);
             return;
         }
@@ -53,18 +55,18 @@ const Container = () => {
     return (
         <div className="container-content">
             <div className="instructions">
-                <h2>Как использовать:</h2>
+                <h2>{t("container.howToUse")}</h2>
                 <div className="examples">
                     <div className="example-item">
-                        <span className="example-label">Через запятую:</span>
+                        <span className="example-label">{t("container.byComma")}</span>
                         <span className="example-value">1,2,3,4,5</span>
                     </div>
                     <div className="example-item">
-                        <span className="example-label">Через пробел:</span>
+                        <span className="example-label">{t("container.bySpace")}</span>
                         <span className="example-value">1 2 3 4 5</span>
                     </div>
                     <div className="example-item">
-                        <span className="example-label">Apple Notes:</span>
+                        <span className="example-label">{t("container.appleNotes")}</span>
                         <span className="example-value">- [] 1 - [] 2 - [] 3</span>
                     </div>
                 </div>
@@ -77,26 +79,27 @@ const Container = () => {
                         type="text"
                         value={value}
                         onChange={e => setValue(e.target.value)}
-                        placeholder="Введите числа: 1,2,3 или 1 2 3"
+                        placeholder={t("container.placeholder")}
                         autoComplete="off"
                         autoFocus
                     />
                     {value && (
-                        <button 
-                            type="button" 
+                        <button
+                            type="button"
                             className="clear-button"
                             onClick={handleClear}
-                            aria-label="Очистить"
+                            aria-label={t("container.clear")}
+                            title={t("container.clear")}
                         >
                             ✕
                         </button>
                     )}
                 </div>
-                
+
                 <div className="button-group">
                     <button type="submit" className="submit-button">
                         <span className="button-icon">➕</span>
-                        <span>Вычислить сумму</span>
+                        <span>{t("container.calcSum")}</span>
                     </button>
                 </div>
             </form>
@@ -109,9 +112,9 @@ const Container = () => {
             )}
 
             <div className={`result ${result !== null ? 'result-show' : ''}`}>
-                <div className="result-label">Результат:</div>
+                <div className="result-label">{t("container.result")}</div>
                 <div className="result-value">
-                    {result !== null ? result : "Введите числа и нажмите кнопку"}
+                    {result !== null ? result : t("container.resultEmpty")}
                 </div>
             </div>
         </div>
