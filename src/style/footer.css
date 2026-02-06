@@ -1,22 +1,47 @@
-
-
 .footer {
-    h2{
-        padding-right: 10%;
-        margin: 0;
-    }
-    text-align: right;
-    font-size: 1.2em;
-    padding: 0.1em;
-    color: #99d7f1;
-    border-radius: 160px 0 0 0;
-    text-shadow: 2px 3px 0.14em #000000;
-    box-shadow: 2px 3px 1em #818080;
-    height: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-footer);
+    box-shadow: 0 -4px 6px var(--shadow-md);
+    min-height: 70px;
     width: 100%;
-    background-color: #cdcdcd;
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
 
+    h2 {
+        margin: 0;
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+        color: var(--text-footer);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-align: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer {
+        padding: 1rem;
+        min-height: 60px;
+    }
+
+    .footer h2 {
+        font-size: clamp(0.85rem, 3.5vw, 1rem);
+    }
+}
+
+@media (max-width: 360px) {
+    .footer {
+        padding: 0.875rem;
+        min-height: 55px;
+    }
+
+    .footer h2 {
+        font-size: 0.8rem;
+    }
 }

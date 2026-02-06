@@ -1,50 +1,165 @@
-@import url('https://fonts.googleapis.com/css2?family=Macondo&family=Underdog&display=swap');
-
 .header {
-    h1{
-        font-family: 'Macondo', cursive;
-        font-size: clamp(2rem, 5vw, 4rem);
-        margin: 0.6em;
-        color: #d5ffff;
-    }
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 70px;
     box-sizing: border-box;
-    text-align: center;
-    color: #fff;
-    background-color: #bec0f1;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    text-shadow: 2px 3px 0.14em #000000;
-    box-shadow: 2px 3px 1em #818080;
-    border-radius: 0 0 12px 90px;
+    padding: 1rem 1.5rem;
+    background: var(--bg-header);
+    box-shadow: var(--shadow-md);
     width: 100%;
     position: fixed;
     top: 0;
-    right: 0;
-    .time{
-        text-shadow: 2px 3px 0.14em #292828;
-        font-size: clamp(0.9rem, 2.5vw, 1.6rem);
-        text-align: right;
-        padding-right: 5%;
-        color: #b8def6;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    gap: 1rem;
+
+    .header-title-section {
+        flex: 1;
+        min-width: 0;
+        
+        h1 {
+            color: var(--text-header);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            margin: 0.25rem 0 0 0;
+            font-weight: 400;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+
+    .time-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.25rem;
+    }
+
+    .time-label {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.7rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .time {
+        color: var(--text-header);
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.05em;
+    }
+
+    .theme-toggle {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: var(--text-header);
+        padding: 0;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: var(--shadow-sm);
+        flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+        box-shadow: var(--shadow-md);
+    }
+
+    .theme-toggle:active {
+        transform: scale(0.95);
+    }
+
+    .theme-icon {
+        font-size: 1.5rem;
+        line-height: 1;
+        display: block;
+    }
+}
+
+/* Mobile-first: вертикальная компоновка на маленьких экранах */
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+        min-height: auto;
+        gap: 0.75rem;
+    }
+
+    .header-title-section {
+        text-align: center;
+        
+        h1 {
+            font-size: clamp(1.5rem, 6vw, 2rem);
+        }
+    }
+
+    .header-controls {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .time-wrapper {
+        align-items: flex-start;
+    }
+
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
     }
 }
 
 @media (max-width: 360px) {
-  .header {
-    min-height: 60px;
-    padding: 0.4em;
-  }
+    .header {
+        padding: 0.75rem;
+    }
 
-  .header h1 {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
-  }
+    .header-title-section h1 {
+        font-size: clamp(1.25rem, 7vw, 1.75rem);
+    }
 
-  .header .time {
-    font-size: clamp(0.8rem, 3vw, 1.2rem);
-    padding-right: 3%;
-  }
+    .time {
+        font-size: 0.9rem;
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .theme-icon {
+        font-size: 1.25rem;
+    }
 }
